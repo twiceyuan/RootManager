@@ -537,6 +537,29 @@ public class RootManager {
         killProcessByName("zygote");
     }
 
+    /**
+     * Run a specific command and monitor its output online.
+     * 
+     * @param cmd {@link Command} You need pass in a Command Object which
+     *            contains a command string and related methods.
+     */
+    public void runCommandOnline(Command cmd) {
+        RootUtils.checkUIThread();
+        if (cmd != null) {
+            try {
+                Shell.startRootShell().add(cmd).waitForFinish();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (TimeoutException e) {
+                e.printStackTrace();
+            } catch (PermissionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private static boolean accessRoot = false;
 
     private boolean accessRoot() {
