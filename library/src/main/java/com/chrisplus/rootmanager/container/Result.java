@@ -2,12 +2,6 @@ package com.chrisplus.rootmanager.container;
 
 import com.chrisplus.rootmanager.utils.RootUtils;
 
-/**
- * This class is used to store a root operation result which contains the result
- * of execution and details information.
- *
- * @author Chris Jiang
- */
 public class Result {
 
     /* members */
@@ -44,20 +38,23 @@ public class Result {
 
     public enum ResultEnum {
 
-        RUNCOMMAND_SUCCESS(90, "Command Executed Successfully"), RUNCOMMAND_FAILED_TIMEOUT(401,
-                "Run Command Timeout"), RUNCOMMAND_FAILED_DENIED(402,
-                "Run Command Permission Denied"), RUNCOMMAND_FAILED_INTERRUPTED(403,
-                "Run Command Interrupted"), RUNCOMMAND_FAILED(409, "Run Command Failed"),
+        COMMAND_SUCCESS(90, "Command Executed Successfully"),
+        COMMAND_FAILED_TIMEOUT(401, "Run Command Timeout"),
+        COMMAND_FAILED_DENIED(402, "Run Command Permission Denied"),
+        COMMAND_FAILED_INTERRUPTED(403, "Run Command Interrupted"),
+        COMMAND_FAILED(409, "Run Command Failed"),
 
-        INSTALL_SUCCESS(80, "Application installed Successfully"), INSTALL_FAILED_NOSPACE(404,
-                "Install Failed because of no enough space"), INSTALL_FAILED_WRONGCONTAINER(405,
-                "Install Failed Wrong container"), INSTALL_FAILED_WRONGCER(406,
-                "Install Failed Wrong Cer or version"), INSTALL_FIALED(407, "Install Failed"),
+        INSTALL_SUCCESS(80, "Application installed Successfully"),
+        INSTALL_FAILED_NOSPACE(404, "Install Failed because of no enough space"),
+        INSTALL_FAILED_WRONGCONTAINER(405, "Install Failed Wrong container"),
+        INSTALL_FAILED_WRONGCER(406, "Install Failed Wrong Cer or version"),
+        INSTALL_FIALED(407, "Install Failed"),
 
-        UNINSTALL_SUCCESS(70, "Application uninstall Successfully"), UNINSTALL_FAILED(408,
-                "Uninstall App Failed"),
+        UNINSTALL_SUCCESS(70, "Application uninstall Successfully"),
+        UNINSTALL_FAILED(408, "Uninstall App Failed"),
 
-        FAILED(409, "Illegal Parameters or State"), CUSTOM(0, "");
+        FAILED(409, "Illegal Parameters or State"),
+        CUSTOM(0, "");
 
         private int statusCode;
 
@@ -87,27 +84,27 @@ public class Result {
         private ResultEnum inEnum = null;
 
         public ResultBuilder setCommandSuccess() {
-            inEnum = ResultEnum.RUNCOMMAND_SUCCESS;
+            inEnum = ResultEnum.COMMAND_SUCCESS;
             return this;
         }
 
         public ResultBuilder setCommandFailedTimeout() {
-            inEnum = ResultEnum.RUNCOMMAND_FAILED_TIMEOUT;
+            inEnum = ResultEnum.COMMAND_FAILED_TIMEOUT;
             return this;
         }
 
         public ResultBuilder setCommandFailedDenied() {
-            inEnum = ResultEnum.RUNCOMMAND_FAILED_DENIED;
+            inEnum = ResultEnum.COMMAND_FAILED_DENIED;
             return this;
         }
 
         public ResultBuilder setCommandFailedInterrupted() {
-            inEnum = ResultEnum.RUNCOMMAND_FAILED_INTERRUPTED;
+            inEnum = ResultEnum.COMMAND_FAILED_INTERRUPTED;
             return this;
         }
 
         public ResultBuilder setCommandFailed() {
-            inEnum = ResultEnum.RUNCOMMAND_FAILED;
+            inEnum = ResultEnum.COMMAND_FAILED;
             return this;
         }
 
@@ -160,7 +157,8 @@ public class Result {
         public Result build() {
             if (inEnum == null) {
                 throw new IllegalStateException(
-                        "Get a empty or null error message during command execution, can not generate result object");
+                        "Get a empty or null error message during command execution, can not " +
+                                "generate result object");
             }
 
             Result re = new Result();
