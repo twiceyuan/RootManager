@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <manifest xmlns:tools="http://schemas.android.com/tools"
           package="com.chrisplus.rootmanager"
           xmlns:android="http://schemas.android.com/apk/res/android">
@@ -13,20 +12,6 @@
         <activity
             android:name="com.chrisplus.rootmanagersample.MainActivity"
             android:label="@string/app_name">
-=======
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.chrisplus.rootmanagersample">
-
-    <application
-            android:name=".RootManagerSampleApplication"
-            android:allowBackup="true"
-            android:icon="@drawable/ic_launcher"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme">
-        <activity
-                android:name=".MainActivity"
-                android:label="@string/app_name">
->>>>>>> Chrisplus/master
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

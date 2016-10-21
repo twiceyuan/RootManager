@@ -1,17 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-<<<<<<< HEAD
-    compileSdkVersion 23
-    buildToolsVersion '23.0.2'
-
-    defaultConfig {
-        applicationId "com.chrisplus.rootmanagersample"
-        minSdkVersion 9
-        targetSdkVersion 22
-        versionCode 202
-        versionName "2.0.2"
-=======
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
@@ -21,7 +10,6 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         versionCode project.version_code.toInteger()
         versionName project.version_name
->>>>>>> Chrisplus/master
     }
 
     buildTypes {

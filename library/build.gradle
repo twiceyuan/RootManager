@@ -9,21 +9,10 @@ buildscript {
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: "com.jfrog.bintray"
-
-group = 'com.chrisplus.rootmanager'
-version = project.version_name
-
 
 android {
-<<<<<<< HEAD
-    compileSdkVersion 22
-    buildToolsVersion "23.0.2"
-=======
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
->>>>>>> Chrisplus/master
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -34,55 +23,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-}
-
-install {
-    repositories.mavenInstaller {
-        pom {
-            project {
-                name project.repo_name
-                description project.repo_desc
-                url project.repo_site
-
-                packaging 'aar'
-                artifactId 'library'
-                version project.version_name
-
-                // Set your license
-                licenses {
-                    license {
-                        name project.license_name
-                        url project.license_url
-                    }
-                }
-                developers {
-                    developer {
-                        id project.developer_id
-                        name project.developer_name
-                        email project.developer_email
-                    }
-                }
-                scm {
-                    connection project.repo_git
-                    developerConnection project.repo_site
-                    url project.repo_site
-
-                }
-            }
-        }
-    }
-}
-
-bintray {
-    configurations = ['archives']
-    pkg {
-        repo = "maven"
-        name = project.repo_name
-        websiteUrl = project.repo_site
-        vcsUrl = project.repo_git
-        licenses = [project.license_name]
-        publish = true
-    }
 }
 
 task sourcesJar(type: Jar) {
@@ -102,23 +42,4 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives javadocJar
     archives sourcesJar
-}
-
-def Properties props = new Properties()
-def propFile = new File('publish.properties')
-if (propFile.isFile() && propFile.canRead()) {
-    props.load(new FileInputStream(propFile))
-
-    if (props != null && props.containsKey('bintray.user') &&
-            props.containsKey('bintray.key')) {
-
-        println 'publish.properties found'
-        bintray.user = props['bintray.user']
-        bintray.key = props['bintray.key']
-
-    } else {
-        println 'publish.properties found but some entries are missing'
-    }
-} else {
-    println 'publish.properties not found'
 }
